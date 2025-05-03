@@ -7,7 +7,7 @@ const strToBool = (value) => {
 
 const DB_DATABASE = process.env.DB_DATABASE || "kubedevnews";
 const DB_USERNAME = process.env.DB_USERNAME || "kubedevnews";
-const DB_PASSWORD = process.env.DB_PASSWORD || "Pg#123";
+const DB_PASSWORD = process.env.DB_PASSWORD || "Pg123";
 const DB_HOST = process.env.DB_HOST || "localhost";
 const DB_PORT = parseInt(process.env.DB_PORT, 10) || 5432; 
 const DB_SSL_REQUIRE =  strToBool(process.env.DB_SSL_REQUIRE) || false;
