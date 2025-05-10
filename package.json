@@ -1,0 +1,22 @@
+{
+  "name": "kube-news",
+  "description": "Uma aplicação de notícias desenvolvida em NodeJS para demonstrar o uso de containers e Kubernetes.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfragoso-git/kube-news.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfragoso-git/kube-news/issues"
+  },
+  "homepage": "https://github.com/rfragoso-git/kube-news#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
