@@ -18,6 +18,8 @@ services:
       - "8080:8080"
     networks:
       - kubenews_net
+    depends_on:
+      - postgres
     environment:
       DB_USERNAME: kubedevnews
       DB_PASSWORD: Pg123
@@ -25,20 +27,15 @@ services:
       DB_HOST: postgres # Nome do serviço que você atribuiu = postgres
       DB_PORT: 5432
     
-    
-    # depends_on:
-    #   - postgres
-    
-  
 volumes:
   kubenews_data:
-    name: my_volume_data
+    name: kubenews_vol
     external: true # Sem o true, o docker-compose tenta criar o volume novamente, o que falha 
    
 
 networks:
     kubenews_net:
-      name: net_kubenews
+      # name: net_kubenews
       external: true # Sem o true, o docker-compose tenta criar a rede novamente, o que falha
       driver: bridge
   
