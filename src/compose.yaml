@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:${POSTGRES_TAG}
+    image: postgres:${POSTGRES_TAG:-latest}
     ports:
       - "5432:5432"
     environment:
@@ -13,7 +13,7 @@ services:
       - kubenews_net
 
   kube-news:
-    image: rof1966/kube-news-hml:${KUBENEWS_TAG}
+    image: rof1966/kube-news-hml:${KUBENEWS_TAG:-latest}
     build: 
       context: .
       dockerfile: Dockerfile 
