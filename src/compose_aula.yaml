@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG:-latest}
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - kubenews_data:/var/lib/postgresql/data
+    networks:
+      - kubenews_net
+
+  app:
+    extends:
+      file: ./kubenews_compose.yaml
+      service: kube-news
+  
+include:
+  - ./compose_app2.yaml
+    
+volumes:
+  kubenews_data:
+    name: kubenews_vol
+    external: true # Sem o true, o docker-compose tenta criar o volume novamente, o que falha 
+   
+
+networks:
+    kubenews_net:
+      # name: net_kubenews
+      external: true # Sem o true, o docker-compose tenta criar a rede novamente, o que falha
+      driver: bridge
+  
+      
+    
