@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG:-latest}
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - kubenews_data:/var/lib/postgresql/data
+    networks:
+      - kubenews_net
+
+  kube-news:
+    image: rof1966/kube-news-hml:${KUBENEWS_TAG:-latest}
+    build: 
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - "8080:8080"
+    networks:
+      - kubenews_net
+    depends_on:
+      - postgres
+    environment:
+      DB_USERNAME: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_DATABASE: ${POSTGRES_DB}
+      DB_HOST: postgres # Nome do serviço que você atribuiu = postgres
+      DB_PORT: 5432
+    
+volumes:
+  kubenews_data:
+    name: kubenews_vol
+    external: true # Sem o true, o docker-compose tenta criar o volume novamente, o que falha 
+   
+
+networks:
+    kubenews_net:
+      # name: net_kubenews
+      external: true # Sem o true, o docker-compose tenta criar a rede novamente, o que falha
+      driver: bridge
+  
+      
+    

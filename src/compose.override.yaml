@@ -1,0 +1,8 @@
+services:
+  postgres:
+    image: postgres:alpine3.20
+  
+  app:
+    ports:
+      - "8181:8080"
+
