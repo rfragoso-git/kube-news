@@ -1,4 +1,4 @@
 node_modules/
 Dockerfile
-compose.yaml
-.env
+*compose*.yaml
+*.env
